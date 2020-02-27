@@ -1,0 +1,28 @@
+version: '3'
+services:
+  demo-api:
+    build:
+      context: .
+    container_name: demo-api-service
+    volumes:
+      - .:/usr/app
+    command: ['/bin/sh', '-c', 'yarn && yarn dev']
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=dev
+      - APP_NAME=demo-api
+      - MONGO_CONNECT_URI=mongodb://demo-api-mongo:27017
+      - MONGO_DB_NAME=demo-api
+    depends_on:
+      - demo-mongo
+  demo-mongo:
+    container_name: demo-api-mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+networks:
+  api-network:
+    external: true
