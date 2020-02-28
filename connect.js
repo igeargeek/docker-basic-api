@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const mongoose = require('mongoose')
 
 const { MONGO_CONNECT_URI, MONGO_DB_NAME } = process.env

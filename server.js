@@ -1,5 +1,5 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const app = express()
 const Blog = require('./BlogModel')
 const dbConnect = require('./connect')
 
@@ -17,7 +17,7 @@ app.post('/blogs', async (req, res) => {
     body: 'izone and wizone',
     author: 'admin'
   })
-  blog.save(function (err) {
+  blog.save((err) => {
     if (err) return res.send('created fail')
     return res.send('created success')
   })
@@ -28,12 +28,11 @@ app.get('/blogs', async (req, res) => {
   res.json(blogs)
 })
 
-app.get('/about-me', function (req, res) {
+app.get('/about-me', (req, res) => {
   res.send(`my name\'s noppadol lanngain ${process.env.APP_NAME}`)
 })
 
 app.listen(port, async () => {
-  // await db()
   console.log(`running server now! ${port}`)
 })
 
